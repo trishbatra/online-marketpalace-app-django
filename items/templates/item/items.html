@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+{% block title %}
+    woo-woo-woo
+{% endblock  %}
+
+{% block content  %}
+<div  >
+    <form class="px-10 mb-10 flex" action="{% url 'items:itemss' %}" method="get">
+    <input 
+    placeholder="search for a item" 
+    type="search"
+    name="searchItem"
+    class="p-5  border-2 border-teal-500 mx-auto rounded-xl placeholder:text-gray-600  w-[90%] items-center"
+    >
+    <button
+     class="bg-teal-500 hover:bg-teal-600 text-white rounded-2xl ml-3 px-4 w-[155px] h-auto  text-lg">
+     Search</button>
+    </form>
+</div>
+<p class="ml-[54px] text-lg text-teal-600">Apply Below Filters</p>
+<p class="text-sm mb-5 ml-[54px] font-light"> click x below to clear the filters </p>
+<ul class="flex ml-[37px]" >
+    {% for c in ccc  %}
+    <a
+    href="{% url 'items:itemss' %}?cat={{c.id}}"
+    class="mx-4 rounded cursor-pointer bg-teal-300 p-[10px] text-teal-700 capitalize " >
+    {{c}}
+</a>
+{% endfor %}
+<a href="{% url 'items:itemss' %}" class="text-red-600 text-4xl cursor-pointer" > X </a>
+</ul>
+<div class="grid grid-cols-3  p-3 text-center">
+        {% for it in i %}
+            <div class=" h-25 w-[450px] p-7 rounded-xl  border border-teal-500 rounded m-4">
+                <img class="h-[300px] mx-auto rounded-xl w-[350px] " src="{{it.image.url}}" alt="">
+                <h2 class="text-lg font-semibold capitalize  p-4"> {{it.name}} </h2>
+                <p> {{it.description}} </p>
+                <a href="{% url 'items:detail' it.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white hover:bg-teal-700 rounded-xl"> Get Details </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock  %}

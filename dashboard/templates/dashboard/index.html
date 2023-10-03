@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Welcome 
+{% endblock  %}
+{% block content  %}
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-cl">
+    <h2 class="mb-12 text-2xl text-center"> My Items </h2>
+    <div class="grid grid-cols-3 gap-3">
+        {% for items in iii  %}
+        <div>
+            <a href="{% url 'items:detail' items.id %}">
+                <div>
+                    <img src="{{items.image.url}}" class="rounded-t-xl w-[440px] h-[400px] hover:scale-110 transition ">
+                </div>
+                <div class="p-6 bg-white rounded-b-xl">
+                    <h2 class="text-2xl">{{items.name}}</h2>
+                    <p class="text-gray-400 mb-8">price:{{items.price}}</p>
+                    <a href="{% url 'dashboard:del' items.id %}" class="px-6 py-3  text-lg bg-red-600 text-white rounded-xl  front-semibold hover:bg-red-700 " >Delete </a>
+                </div> 
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
